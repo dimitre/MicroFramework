@@ -26,13 +26,13 @@ void draw() {
 	rotateY (2*PI*mouseX/width);
 	
 	fill(255);
-	for (float y = 1; y < 5000; y++) {
+	for (float y = 1; y < 7000; y++) {
 		//stroke(155, y%255, a);
 		fill(sin(y/9.0)*127 + 127, (int)y/8%255, 100);
 		rotateY (.08 * easyX);
 		rotateX (sin(y*3.0 + a) * 180.0);
 		rotateZ (.1 * easyY);
-		float yy = y/1005000.0;
+		float yy = y/100000.0;
 		translate (yy, -yy, -a/20.0);
 		line(0, 0, 0, 80);
 		rect(0, 0, 5, 5);
