@@ -1,3 +1,6 @@
+#define PI 3.141592654
+
+
 #include <stdlib.h>
 //#include <stdio.h>
 #include <math.h>       /* fmod */

@@ -1,5 +1,3 @@
-#define PI 3.141592654
-
 float easyX, easyY;
 float rotX, rotY;
 float mouseX, mouseY;
@@ -8,7 +6,6 @@ float tempo;
 float a = 200;
 
 void setup() {
-//	makeTex();
 }
 
 void draw() {
@@ -43,10 +40,7 @@ void draw() {
 	   
 	}
 	pop();
-	
-
 }
-
 
 void mousedrag (int x, int y) {
 	rotX = x/3.0 + 90;
