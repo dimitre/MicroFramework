@@ -1,3 +1,9 @@
+#define INC "program.h"
+//#define INC "novelo.h"
+
+
+#define GL_SILENCE_DEPRECATION 1
+
 #define PI 3.141592654
 
 
@@ -80,6 +86,9 @@ void mouseclick(int button,int state,int x,int y) {
 	}
 }
 
+float map(float v, float i1, float i2, float o1, float o2) {
+	return ((v-i1)/(i2-i1)) * (o2-o1) + o1;
+}
 
 
 void rotateX (float angle) {
@@ -154,7 +163,7 @@ void reshape(int w, int h)
 //	glTranslatef(0.0, 0.0, -3.6);
 }
 
-void translate(float x, float y, float z) {
+void translate(float x, float y, float z = 0) {
 	glTranslatef(x, y, z);
 }
 
@@ -164,7 +173,7 @@ void idle(void)
 }
 
 
-#include "program.h"
+#include INC
 
 void init(void) {
 	glClearColor (0.0, 0.0, 0.0, 0.0);
@@ -189,6 +198,31 @@ void display(void) {
 	glutPostRedisplay();
 	glFlush();
 
+}
+
+bool is_fullscreen = false;
+void toggle_fullscreen() {
+  if (is_fullscreen) {
+    glutReshapeWindow(width, height);
+    glutPositionWindow(50, 50);
+//    printf("%d, %d\n", pos_x, pos_y);
+  } else {
+    glutFullScreen();
+  }
+  is_fullscreen = !is_fullscreen;
+}
+
+void keyDown (unsigned char key, int x, int y)
+{
+	if (key == '-') {
+		toggle_fullscreen();
+	}
+    std::cout << "keydown " << key << "\n";
+}
+
+void keyUp (unsigned char key, int x, int y)
+{
+    std::cout << "keyup " << key << "\n";
 }
 
 int main(int argc, char** argv)
@@ -220,6 +254,9 @@ int main(int argc, char** argv)
     glutPassiveMotionFunc(mousemove);
 	
 	//setupLight();
+	
+    glutKeyboardFunc(keyDown);
+    glutKeyboardUpFunc(keyUp);
     glutMainLoop();
     return EXIT_SUCCESS;
 }

@@ -65,8 +65,8 @@
 		1982F6D223F4732200FE2CE5 /* MicroFramework */ = {
 			isa = PBXGroup;
 			children = (
-				1982F6DA23F4735A00FE2CE5 /* microFramework.cpp */,
 				1982F6DB23F4735A00FE2CE5 /* program.h */,
+				1982F6DA23F4735A00FE2CE5 /* microFramework.cpp */,
 			);
 			path = MicroFramework;
 			sourceTree = "<group>";

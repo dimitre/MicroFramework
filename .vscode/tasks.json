@@ -6,6 +6,10 @@
         {
             "label": "RUN",
             "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+              },
             "command": "clang MicroFramework/*.cpp -framework OPENGL -framework GLUT -o mf.app ; ./mf.app"
         }
     ]
