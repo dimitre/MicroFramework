@@ -21,25 +21,31 @@ void draw() {
 	a += .001;
 	push();
 //	translate (width/2, height/2,-1*width);
-	rotateX (mouseDragX/height * 180.0);
-	rotateY (mouseDragY/width * 180.0);
+	rotateX ((mouseDragY)/height * 180.0);
+	rotateY ((mouseDragX)/width * 180.0);
 	
-	fill(255);
+//	fill(255);
 	
-	float aresta = 10.0;
-	int max = 12;
+	float aresta = 16.0;
+	int max = 8;
+	lineWidth(2);
+	
 	for (int x=-max; x<=max; x++) {
-		float r = map(x, -max, max, 180, 255);
+		float r = map(x, -max, max, 100, 255);
 //		cout << x << " :: " << r << endl;
 		for (int y=-max; y<=max; y++) {
 			push();
 			translate(x*aresta, y*aresta);
-			rotateX(x*10.0 + y*10.0 + a*100.0);
-			rotateY(x*10.0 + y*10.0 + a*100.0);
-			rotateZ(x*10.0 + y*10.0 + a*100.0);
-			fill(r, y*10.0, 100);
-			rect(0,0,aresta*.3,aresta*2);
-			line(0,0,aresta,0);
+			float rot = x*2.0 + y*3.0 + a*300.0;
+			rotateX(rot);
+			rotateY(rot*1.25);
+			rotateZ(rot*1.35);
+			fill(r, 255.0-r, mouseX);
+//			rect(0,0,aresta*.2,aresta*1.5);
+//			rect(0,0,aresta*1.5,aresta*.2);
+			
+			glutWireCube(aresta*.6);
+//			line(0,0,aresta,0);
 			pop();
 		}
 	}
@@ -61,8 +67,8 @@ void draw() {
 }
 
 void mousedrag (int x, int y) {
-	mouseDragX = x;
-	mouseDragY = y;
+	mouseDragX = x -width/2;
+	mouseDragY = y -height/2;
 }
 
 void mousemove(int x, int y) {

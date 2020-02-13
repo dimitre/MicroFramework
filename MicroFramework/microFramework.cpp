@@ -1,6 +1,5 @@
-#define INC "program.h"
-//#define INC "novelo.h"
-
+#define SKETCH "program.h"
+//#define SKETCH "novelo.h"
 
 #define GL_SILENCE_DEPRECATION 1
 
@@ -90,6 +89,10 @@ float map(float v, float i1, float i2, float o1, float o2) {
 	return ((v-i1)/(i2-i1)) * (o2-o1) + o1;
 }
 
+void lineWidth(float w) {
+	glLineWidth(w);
+}
+
 
 void rotateX (float angle) {
 	glRotatef (angle, 1.0f, 0, 0);
@@ -173,7 +176,7 @@ void idle(void)
 }
 
 
-#include INC
+#include SKETCH
 
 void init(void) {
 	glClearColor (0.0, 0.0, 0.0, 0.0);
@@ -190,6 +193,17 @@ void init(void) {
 
 
 void display(void) {
+	// start drawing
+	glHint(GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
+
+	glEnable(GL_DEPTH_TEST);
+    glEnable(GL_MULTISAMPLE_ARB);
+//	glEnable(GL_MULTISAMPLE);
+
+//
+
+	
+	
 	draw();
 	
 	//	glReadBuffer(GL_FRONT);
@@ -230,7 +244,9 @@ int main(int argc, char** argv)
     glutInit(&argc, argv);
 	
     //glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH);
+//	glutSetOption(GLUT_MULTISAMPLE, 8);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA | GLUT_DEPTH | GLUT_MULTISAMPLE);
+//	glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE | GLUT_MULTISAMPLE);
     
 	glutInitWindowSize(width, height);
     if (fullscreen) {
