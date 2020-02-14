@@ -30,6 +30,7 @@
 		1982F6DB23F4735A00FE2CE5 /* program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = program.h; sourceTree = "<group>"; };
 		1982F6EF23F473F900FE2CE5 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		1982F6F123F473FF00FE2CE5 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		19EC7B3F23F642B2007F1C52 /* _shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _shader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +66,7 @@
 		1982F6D223F4732200FE2CE5 /* MicroFramework */ = {
 			isa = PBXGroup;
 			children = (
+				19EC7B3F23F642B2007F1C52 /* _shader.h */,
 				1982F6DB23F4735A00FE2CE5 /* program.h */,
 				1982F6DA23F4735A00FE2CE5 /* microFramework.cpp */,
 			);

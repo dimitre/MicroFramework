@@ -19,10 +19,8 @@ int height = 800;
 
 using namespace std;
 
-#define checkImageWidth 64*4
-#define checkImageHeight 64*4
-static GLuint texName; 
-GLubyte checkImage[checkImageHeight][checkImageWidth][4]; 
+static GLuint texName;
+GLubyte checkImage[800][800][4];
 
 int i, j;
 //int width=64*20;
@@ -31,6 +29,7 @@ int fullscreen=0;
 int clip, suave;
 float raio=1.5;
 float raio_tex;
+
 
 //virtual void mousedrag (int x, int y) {} 
 
@@ -48,12 +47,35 @@ void makeTex(void) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,                     GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,                     GL_LINEAR);
 	
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, checkImageWidth, checkImageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage); 
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage); 
 	
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);    
 	
 	glBindTexture(GL_TEXTURE_2D, texName);  
+}
+
+
+void push() {
+	glPushMatrix();
+}
+
+void pop() {
+	glPopMatrix();
+}
+
+void circle (float x, float y , float r) {
+	GLUquadricObj* quadratic;
+	quadratic = gluNewQuadric();
+	gluQuadricNormals(quadratic, GLU_SMOOTH);
+	push();
+	glTranslatef(x, y, 0);
+	gluDisk(quadratic,0,r,32,32);
+	pop();
+}
+
+void box(float a) {
+	glutWireCube(a);
 }
 
 void rect(float x1, float y1, float w, float h) {
@@ -66,9 +88,6 @@ void rect(float x1, float y1, float w, float h) {
 	glVertex2f(x1, y2);
 	glEnd();
 }
-
-
-
 
 
 void mouseclick(int button,int state,int x,int y) {
@@ -106,8 +125,9 @@ void rotateZ (float angle) {
 	glRotatef (angle, 0, 0, 1);
 }
 
-void fill(int r, int g, int b) {
-	glColor3f(r/255.0f,g/255.0f,b/255.0f);
+void fill(int r, int g, int b, int a = 255) {
+	glColor4f(r/255.0f,g/255.0f,b/255.0f,a/255.0);
+//	glColor3f(r/255.0f,g/255.0f,b/255.0f);
 }
 
 void stroke(int r, int g, int b, int a=255) {
@@ -135,13 +155,6 @@ void camera(void)
 	gluLookAt(0, 0, 450.0, 0, 0, 0, 0, 1, 0);
 }
 
-void push() {
-	glPushMatrix();
-}
-
-void pop() {
-	glPopMatrix();
-}
 
 void background(float r, float g, float b) {
 	glClearColor( r/255.0, g/255.0, b/255.0, 1.0 );
@@ -175,7 +188,13 @@ void idle(void)
     glutPostRedisplay();
 }
 
+void readTex() {
+	glReadBuffer(GL_FRONT);
+	glReadPixels(0,0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,  width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
+}
 
+#include "_shader.h"
 #include SKETCH
 
 void init(void) {
@@ -206,9 +225,6 @@ void display(void) {
 	
 	draw();
 	
-	//	glReadBuffer(GL_FRONT);
-	//	glReadPixels(0,0,checkImageWidth, checkImageHeight, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
-	//	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,  checkImageWidth, checkImageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkImage);
 	glutPostRedisplay();
 	glFlush();
 
@@ -228,16 +244,21 @@ void toggle_fullscreen() {
 
 void keyDown (unsigned char key, int x, int y)
 {
+	if (key == 's') {
+		useShader ^= 1;
+	}
 	if (key == '-') {
 		toggle_fullscreen();
 	}
-    std::cout << "keydown " << key << "\n";
+//    std::cout << "keydown " << key << "\n";
 }
 
 void keyUp (unsigned char key, int x, int y)
 {
-    std::cout << "keyup " << key << "\n";
+//    std::cout << "keyup " << key << "\n";
 }
+
+
 
 int main(int argc, char** argv)
 {
@@ -248,6 +269,7 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA | GLUT_DEPTH | GLUT_MULTISAMPLE);
 //	glutInitDisplayMode( GLUT_RGBA | GLUT_DOUBLE | GLUT_MULTISAMPLE);
     
+//    glutInitWindowPosition(100,100);
 	glutInitWindowSize(width, height);
     if (fullscreen) {
         char mode[1000];
@@ -259,6 +281,10 @@ int main(int argc, char** argv)
 		//glutInitWindowPosition(100, 100);
 	    glutCreateWindow("Dmtr.org MicroFramework");
 	}
+	
+	
+	setupShader();
+	
 	init();
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
@@ -270,6 +296,8 @@ int main(int argc, char** argv)
     glutPassiveMotionFunc(mousemove);
 	
 	//setupLight();
+	
+	glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
 	
     glutKeyboardFunc(keyDown);
     glutKeyboardUpFunc(keyUp);
