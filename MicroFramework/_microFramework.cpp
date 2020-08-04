@@ -80,12 +80,12 @@ void box(float a) {
 
 void rect(float x1, float y1, float w, float h) {
 	glBegin(GL_POLYGON);
-	float x2 = x1 + w;
-	float y2 = y1 + h;
-	glVertex2f(x1, y1);
-	glVertex2f(x2, y1);
-	glVertex2f(x2, y2);
-	glVertex2f(x1, y2);
+		float x2 = x1 + w;
+		float y2 = y1 + h;
+		glVertex2f(x1, y1);
+		glVertex2f(x2, y1);
+		glVertex2f(x2, y2);
+		glVertex2f(x1, y2);
 	glEnd();
 }
 
@@ -195,6 +195,8 @@ void readTex() {
 }
 
 #include "_shader.h"
+#include "_util.h"
+
 #include SKETCH
 
 void init(void) {
@@ -304,3 +306,4 @@ int main(int argc, char** argv)
     glutMainLoop();
     return EXIT_SUCCESS;
 }
+

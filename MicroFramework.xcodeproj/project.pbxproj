@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1982F6DC23F4735A00FE2CE5 /* microFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1982F6DA23F4735A00FE2CE5 /* microFramework.cpp */; };
+		1942607924D9B4B0009C6548 /* _microFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1942607824D9B4B0009C6548 /* _microFramework.cpp */; };
 		1982F6F023F473F900FE2CE5 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1982F6EF23F473F900FE2CE5 /* GLUT.framework */; };
 		1982F6F223F473FF00FE2CE5 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1982F6F123F473FF00FE2CE5 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
@@ -25,8 +25,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1942607824D9B4B0009C6548 /* _microFramework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _microFramework.cpp; sourceTree = "<group>"; };
+		1942607A24D9B4C5009C6548 /* _util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _util.h; sourceTree = "<group>"; };
 		1982F6D023F4732200FE2CE5 /* MicroFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MicroFramework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1982F6DA23F4735A00FE2CE5 /* microFramework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = microFramework.cpp; sourceTree = "<group>"; };
 		1982F6DB23F4735A00FE2CE5 /* program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = program.h; sourceTree = "<group>"; };
 		1982F6EF23F473F900FE2CE5 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		1982F6F123F473FF00FE2CE5 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -66,9 +67,10 @@
 		1982F6D223F4732200FE2CE5 /* MicroFramework */ = {
 			isa = PBXGroup;
 			children = (
+				1942607824D9B4B0009C6548 /* _microFramework.cpp */,
+				1942607A24D9B4C5009C6548 /* _util.h */,
 				19EC7B3F23F642B2007F1C52 /* _shader.h */,
 				1982F6DB23F4735A00FE2CE5 /* program.h */,
-				1982F6DA23F4735A00FE2CE5 /* microFramework.cpp */,
 			);
 			path = MicroFramework;
 			sourceTree = "<group>";
@@ -139,7 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1982F6DC23F4735A00FE2CE5 /* microFramework.cpp in Sources */,
+				1942607924D9B4B0009C6548 /* _microFramework.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,6 +192,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -242,6 +245,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

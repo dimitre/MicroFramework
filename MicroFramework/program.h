@@ -3,23 +3,32 @@ float mouseDragX, mouseDragY;
 float mouseX, mouseY;
 float tempo;
 
+ofFbo fbo;
+
 float a = 200;
 
+
+void mousedrag (int x, int y) {
+	mouseDragX = x -width/2;
+	mouseDragY = y -height/2;
+}
+
+void mousemove(int x, int y) {
+	mouseX = x;
+	mouseY = y;
+}
+
 void setup() {
+	cout << "this is setup" << endl;
+	fbo.allocate(410,330);
 }
 
 
-void draw() {
-	easyX += (mouseX-easyX)/10.0;
-	easyY += (mouseY-easyY)/10.0;
-
+void desenha() {
 	background(0.0);
 	clear();
 	camera();
-	
-	beginShader();
-
-
+//	beginShader();
 	fill(255,0,80);
 
 	a += .0002;
@@ -28,11 +37,7 @@ void draw() {
 	rotateX ((mouseDragY)/height * 180.0);
 	rotateY ((mouseDragX)/width * 180.0);
 	
-//	fill(255);
-	
-//	float aresta = 16.0;
 	int max = 16;
-	
 	float aresta = 8.0;
 	for (auto & interval : { 8, 4, 2, 1  }) {
 		lineWidth(interval);
@@ -40,7 +45,7 @@ void draw() {
 		for (int x=-max; x<=max; x+=interval) {
 			float r = map(x, -max, max, 100, 255);
 			for (int y=-max; y<=max; y+=interval) {
-//				if (rand() % 10 > 8)
+				if (rand() % 10 > 8)
 				{
 					push();
 					translate(x*aresta, y*aresta);
@@ -48,7 +53,7 @@ void draw() {
 					rotateX(rot*1);
 					rotateY(rot*1.3);
 					rotateZ(rot*1.7);
-					fill(r, 255.0-r, mouseX, 200);
+					fill(r, 255.0-r, mouseX, 100);
 		//			rect(0,0,aresta*.2,aresta*1.5);
 		//			rect(0,0,aresta*1.5,aresta*.2);
 	//				float deslocamento = mouseY / 3.0;
@@ -79,12 +84,13 @@ void draw() {
 	pop();
 }
 
-void mousedrag (int x, int y) {
-	mouseDragX = x -width/2;
-	mouseDragY = y -height/2;
-}
 
-void mousemove(int x, int y) {
-	mouseX = x;
-	mouseY = y;
+
+void draw() {
+	easyX += (mouseX-easyX)/20.0;
+	easyY += (mouseY-easyY)/20.0;
+//	fbo.begin();
+//	fbo.end();
+	desenha();
+//	fbo.draw();
 }

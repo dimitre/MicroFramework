@@ -103,7 +103,7 @@ void setupShader() {
 	// create and compiler vertex shader
 	vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	source = vertex_source.c_str();
-	length = vertex_source.size();
+	length = int(vertex_source.size());
 	glShaderSource(vertex_shader, 1, &source, &length);
 	glCompileShader(vertex_shader);
 	if(!check_shader_compile_status(vertex_shader)) {
@@ -114,7 +114,7 @@ void setupShader() {
 	// create and compiler fragment shader
 	fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
 	source = fragment_source.c_str();
-	length = fragment_source.size();
+	length = int(fragment_source.size());
 	glShaderSource(fragment_shader, 1, &source, &length);
 	glCompileShader(fragment_shader);
 	if(!check_shader_compile_status(fragment_shader)) {
