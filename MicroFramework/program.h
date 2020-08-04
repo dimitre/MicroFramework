@@ -2,11 +2,14 @@ float easyX, easyY;
 float mouseDragX, mouseDragY;
 float mouseX, mouseY;
 float tempo;
-
-ofFbo fbo;
-
 float a = 200;
 
+//ofFbo fbo;
+
+void setup() {
+	cout << "this is setup" << endl;
+//	fbo.allocate(410,330);
+}
 
 void mousedrag (int x, int y) {
 	mouseDragX = x -width/2;
@@ -18,10 +21,7 @@ void mousemove(int x, int y) {
 	mouseY = y;
 }
 
-void setup() {
-	cout << "this is setup" << endl;
-	fbo.allocate(410,330);
-}
+
 
 
 void desenha() {
