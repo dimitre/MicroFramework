@@ -4,12 +4,9 @@ float mouseX, mouseY;
 float tempo;
 float a = 200;
 
-//ofFbo fbo;
+ofFbo fbo;
 
-void setup() {
-	cout << "this is setup" << endl;
-//	fbo.allocate(410,330);
-}
+
 
 void mousedrag (int x, int y) {
 	mouseDragX = x -width/2;
@@ -22,12 +19,11 @@ void mousemove(int x, int y) {
 }
 
 
-
-
 void desenha() {
 	background(0.0);
 	clear();
 	camera();
+//	beginShader();
 //	beginShader();
 	fill(255,0,80);
 
@@ -45,7 +41,7 @@ void desenha() {
 		for (int x=-max; x<=max; x+=interval) {
 			float r = map(x, -max, max, 100, 255);
 			for (int y=-max; y<=max; y+=interval) {
-				if (rand() % 10 > 8)
+				if (rand() % 10 > mouseX/50)
 				{
 					push();
 					translate(x*aresta, y*aresta);
@@ -85,12 +81,25 @@ void desenha() {
 }
 
 
+void setup() {
+	cout << "this is setup" << endl;
+//	fbo.allocate(410,330);
+//	setupShader();
+	
+//	test.init();
 
+}
 void draw() {
 	easyX += (mouseX-easyX)/20.0;
 	easyY += (mouseY-easyY)/20.0;
 //	fbo.begin();
+//	desenha();
 //	fbo.end();
-	desenha();
+//	
 //	fbo.draw();
+
+//	test.prepare();
+	desenha();
+	fill(255);
+//	test.final();
 }

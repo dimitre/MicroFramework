@@ -2,7 +2,8 @@
 //https://learnopengl.com/Getting-started/Shaders
 //https://learnopengl.com/Getting-started/Shaders
 
-bool useShader = false;
+//bool useShader = false;
+bool useShader = true;
 
 std::string vertex_source = R"V0G0N(
 varying vec2 texcoord0;
@@ -13,23 +14,16 @@ void main()
 }
 )V0G0N";
 
-
 std::string fragment_source = R"V0G0N(
-
 uniform sampler2DRect tex0;
 varying vec2 texcoord0;
-
 void main (void)
 {
 	vec4 cor = texture2DRect(tex0, texcoord0);
 //	gl_FragColor = vec4(1.0 - cor.r, 1.0, 1.0 - cor.b, 1.0);
 	gl_FragColor = vec4(1.0 , 1.0, 0.0, 1.0);
 }
-
-	
 )V0G0N";
-
-
 
 
 
