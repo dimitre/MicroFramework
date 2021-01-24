@@ -61,7 +61,7 @@ public:
 
 	void prepare()
 	{
-		static float a=0, b=0, c=0;
+//		static float a=0, b=0, c=0;
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glEnable(GL_TEXTURE_2D);
@@ -106,7 +106,8 @@ public:
 	
 	void final()
 	{
-		static float a=0, b=0, c=0;
+//		static float a=0, b=0, c=0;
+		float b = 0;
 
 		const int win_width  = glutGet(GLUT_WINDOW_WIDTH);
 		const int win_height = glutGet(GLUT_WINDOW_HEIGHT);

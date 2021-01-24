@@ -1,4 +1,6 @@
 
+
+
 void push() {
 	glPushMatrix();
 }
@@ -21,7 +23,11 @@ void box(float a) {
 	glutWireCube(a);
 }
 
+
+// pointers?
 void rect(float x1, float y1, float w, float h) {
+
+//void rect(float & x1, float & y1, float & w, float & h) {
 	glBegin(GL_POLYGON);
 		float x2 = x1 + w;
 		float y2 = y1 + h;
@@ -32,22 +38,23 @@ void rect(float x1, float y1, float w, float h) {
 	glEnd();
 }
 
-
-void mouseclick(int button,int state,int x,int y) {
-	if (state == GLUT_DOWN) {
-		if (button == GLUT_RIGHT_BUTTON) {
-//			if (suave++%2==1) {
-//				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-//				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-//			} else {
-//				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-//				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-//			}
-		}
-	}
+// todo: pointers
+void rect(glm::vec2 pos, glm::vec2 dimensions) {
+	rect(pos.x, pos.y, dimensions.x, dimensions.y);
 }
 
-float map(float v, float i1, float i2, float o1, float o2) {
+//virtual void mousemove(int x, int y) {}
+
+//void mouseclick(int button,int state,int x,int y) {
+//	if (state == GLUT_DOWN) {
+//		cout << "mouseclick" << endl;
+//		if (button == GLUT_RIGHT_BUTTON) {
+//
+//		}
+//	}
+//}
+
+float remap(float v, float i1, float i2, float o1, float o2) {
 	return ((v-i1)/(i2-i1)) * (o2-o1) + o1;
 }
 
@@ -67,8 +74,22 @@ void rotateZ (float angle) {
 	glRotatef (angle, 0, 0, 1);
 }
 
+
+struct color {
+public:
+	float r, g, b, a = 255.0;
+	color();
+	color(int rr, int gg, int bb, int aa=255) : r(rr), g(gg), b(bb), a(aa) {
+		
+	}
+};
+
 void fill(int r, int g, int b, int a = 255) {
 	glColor4f(r/255.0f,g/255.0f,b/255.0f,a/255.0);
+}
+
+void fill(color c) {
+	glColor4f(c.r/255.0f,c.g/255.0f,c.b/255.0f,c.a/255.0);
 }
 
 void stroke(int r, int g, int b, int a=255) {
@@ -95,6 +116,19 @@ void camera(void)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(0, 0, 450.0, 0, 0, 0, 0, 1, 0);
+}
+
+
+// teste. remover - testando em 2021
+void noCamera(void) {
+	glViewport(0,0,800,800);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0.0, 800, 800, 0.0, -1.0, 1.0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+//	glMatrixMode(GL_TEXTURE);
+	
 }
 
 
@@ -130,3 +164,10 @@ void idle(void)
 {
     glutPostRedisplay();
 }
+
+
+float random(float min, float max) {
+	return fmod(rand(), max) + min;
+//	return min + rand() * (max-min);
+}
+

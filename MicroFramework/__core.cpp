@@ -1,6 +1,4 @@
 #define GL_SILENCE_DEPRECATION 1
-#define SKETCH "program.h"
-//#define SKETCH "novelo.h"
 
 #include <stdlib.h>
 //#include <stdio.h>
@@ -12,11 +10,30 @@
 #include <GL/glut.h>
 #endif
 #include <iostream>
+#include <map>
+#include <vector>
+
+
+#include <glm/vec2.hpp> // glm::vec3
+#include <glm/vec3.hpp> // glm::vec3
+#include <glm/vec4.hpp> // glm::vec4
+#include <glm/mat4x4.hpp> // glm::mat4
+#include <glm/ext/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale
+#include <glm/ext/matrix_clip_space.hpp> // glm::perspective
+#include <glm/ext/scalar_constants.hpp> // glm::pi
+
+
+
+
+#define SKETCH "program.h"
+//#define SKETCH "novelo.h"
+
+
 
 #define PI 3.141592654
 
-#define WIDTH 800;
-#define HEIGHT 800;
+#define WIDTH 800
+#define HEIGHT 800
 int width = WIDTH;
 int height = HEIGHT;
 
@@ -29,11 +46,15 @@ int fullscreen=0;
 #include "_basic.h"
 #include "_util.h"
 
-//#include "_shader.h"
+//#define RTMIDI17_COREAUDIO 1
+//#include <rtmidi17/rtmidi17.hpp>
+//#include "_midi.h"
 
+//#include "_shader.h"
 #include SKETCH
 
 void init(void) {
+	
 	glClearColor (0.0, 0.0, 0.0, 0.0);
 	//glShadeModel(GL_FLAT);
 	//glEnable(GL_DEPTH_TEST);
@@ -43,7 +64,7 @@ void init(void) {
 	glEnable( GL_BLEND );
 	glEnable( GL_POLYGON_SMOOTH );
 	glDisable( GL_DEPTH_TEST );
-	setup();
+//	setup();
 }
 
 
@@ -54,37 +75,37 @@ void display(void) {
 	glEnable(GL_DEPTH_TEST);
     glEnable(GL_MULTISAMPLE_ARB);
 //	glEnable(GL_MULTISAMPLE);
-
 //
-
-	
-	
 	draw();
 	
+	glutSwapBuffers();
 	glutPostRedisplay();
-	glFlush();
+//	glFlush();
 
 }
 
 bool is_fullscreen = false;
 void toggle_fullscreen() {
-  if (is_fullscreen) {
-    glutReshapeWindow(width, height);
-    glutPositionWindow(50, 50);
-//    printf("%d, %d\n", pos_x, pos_y);
-  } else {
-    glutFullScreen();
-  }
-  is_fullscreen = !is_fullscreen;
+	if (is_fullscreen) {
+		glutReshapeWindow(width, height);
+		glutPositionWindow(50, 50);
+		//    printf("%d, %d\n", pos_x, pos_y);
+	} else {
+		glutFullScreen();
+	}
+	is_fullscreen = !is_fullscreen;
 }
 
 void keyDown (unsigned char key, int x, int y)
 {
-	if (key == 's') {
-//		useShader ^= 1;
+	if (key == 27) {
+		exit(0);
 	}
-	if (key == '-') {
+	else if (key == '-') {
 		toggle_fullscreen();
+	}
+	else if (key == 's') {
+//		useShader ^= 1;
 	}
 //    std::cout << "keydown " << key << "\n";
 }
@@ -96,8 +117,21 @@ void keyUp (unsigned char key, int x, int y)
 
 
 
+void timer( int value )
+{
+    glutTimerFunc( 16, timer, 0 );
+    glutPostRedisplay();
+}
+
+bool setupIsDone = false;
 int main(int argc, char** argv)
 {
+	
+	if (!setupIsDone) {
+		setup();
+		setupIsDone = true;
+	}
+	
     glutInit(&argc, argv);
 	
     //glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
@@ -122,8 +156,10 @@ int main(int argc, char** argv)
 //	setupShader();
 	
 	init();
-    glutDisplayFunc(display);
     glutReshapeFunc(reshape);
+    glutKeyboardFunc(keyDown);
+    glutKeyboardUpFunc(keyUp);
+
     glutIdleFunc(idle);
 	
 	
@@ -135,9 +171,12 @@ int main(int argc, char** argv)
 	
 	glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
 	
-    glutKeyboardFunc(keyDown);
-    glutKeyboardUpFunc(keyUp);
+    glutTimerFunc( 0, timer, 0 );
+
+    glutDisplayFunc(display);
+
     glutMainLoop();
-    return EXIT_SUCCESS;
+	return 0;
+//    return EXIT_SUCCESS;
 }
 
