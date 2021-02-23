@@ -22,6 +22,7 @@
 #include <sstream>
 
 
+#ifdef USEGLM
 #include <glm/vec2.hpp> // glm::vec3
 #include <glm/vec3.hpp> // glm::vec3
 #include <glm/vec4.hpp> // glm::vec4
@@ -29,6 +30,7 @@
 #include <glm/ext/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale
 #include <glm/ext/matrix_clip_space.hpp> // glm::perspective
 #include <glm/ext/scalar_constants.hpp> // glm::pi
+#endif
 
 #define PI 3.141592654
 
@@ -131,17 +133,21 @@ bool setupIsDone = false;
 
 void mouseclick(int button,int state,int x,int y) {
 	if (state == GLUT_DOWN) {
+#ifdef USEGLM
 		myApp.mousePressed(glm::vec2(x,y));
 //		cout << "mouseclick" << endl;
 		if (button == GLUT_RIGHT_BUTTON) {
 
 		}
+#endif
 	}
 }
 
 void mousedrag (int x, int y) {
+#ifdef USEGLM
 	myApp.mouseDragged(glm::vec2(x,y));
 	myApp.mousedrag(x,y);
+#endif
 }
 
 void mousemove(int x, int y) {

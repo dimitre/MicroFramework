@@ -44,9 +44,11 @@ public:
 	}
 
 	// todo: pointers
+#ifdef USEGLM
 	static void rect(glm::vec2 pos, glm::vec2 dimensions) {
 		rect(pos.x, pos.y, dimensions.x, dimensions.y);
 	}
+#endif
 
 	float remap(float v, float i1, float i2, float o1, float o2) {
 		return ((v-i1)/(i2-i1)) * (o2-o1) + o1;
@@ -157,9 +159,7 @@ public:
 	}
 
 
-
-
-
+#ifdef USEGLM
 	friend class rectangle;
 
 	struct rectangle {
@@ -195,7 +195,7 @@ public:
 			return o << "rectangle " << r.pos.x << ", " << r.pos.y << ", " << r.dimensions.x << ", " << r.dimensions.y << endl;
 		}
 	};
-
+#endif
 
 	virtual void setup() {}
 	virtual void draw() {
@@ -204,8 +204,10 @@ public:
 
 	virtual void mousemove(int x, int y) {}
 	virtual void mousedrag(int x, int y) {}
+#ifdef USEGLM
 	virtual void mousePressed(glm::vec2 pos) {}
 	virtual void mouseDragged(glm::vec2 pos) {}
+#endif
 
 };
 
@@ -213,6 +215,7 @@ public:
 //struct app : public microApp;
 
 
+#ifdef USEGLM
 struct interface : public microApp {
 public:
 	map <string, float>		pFloat;
@@ -282,4 +285,4 @@ public:
 		}
 	}
 };
-
+#endif

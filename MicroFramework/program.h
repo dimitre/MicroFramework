@@ -7,12 +7,17 @@ public:
 	float a = 200;
 
 	ofFbo fbo;
+    
+#ifdef USEGLM
 	interface u;
+#endif
 
 	void setup() override {
 	//	setupMidi();
 		cout << "this is setup" << endl;
+#ifdef USEGLM
 		u.setup();
+#endif
 	//	fbo.allocate(410,330);
 	//	setupShader();
 	//	test.init();
@@ -28,12 +33,14 @@ public:
 		mouseY = y;
 	}
 
+#ifdef USEGLM
 	void mousePressed(glm::vec2 pos) override {
 		u.checkMouse(pos);
 	};
 	void mouseDragged(glm::vec2 pos) override {
 		u.checkMouse(pos);
 	};
+#endif
 
 	void desenha() {
 
@@ -51,8 +58,10 @@ public:
 //		rotateX ((mouseDragY)/height * 180.0);
 		rotateY ((mouseDragX)/width * 180.0);
 		
+#ifdef USEGLM
 		rotateX (u.pFloat["slider0"] * 180.0);
 		rotateY (u.pFloat["slider1"] * 180.0);
+#endif
 		
 		int max = 16;
 		float aresta = 8.0;
@@ -97,7 +106,9 @@ public:
 		glDepthFunc(GL_ALWAYS);
 		glEnable(GL_DEPTH_TEST);
 
+#ifdef USEGLM
 		u.draw();
+#endif
 	//	test.final();
 	}
 } myApp;
