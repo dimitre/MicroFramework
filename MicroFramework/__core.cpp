@@ -1,5 +1,10 @@
 #define GL_SILENCE_DEPRECATION 1
 
+// #include "_structs.h"
+#define SKETCH "program.h"
+//#define SKETCH "novelo.h"
+
+
 #include <stdlib.h>
 //#include <stdio.h>
 #include <math.h>       /* fmod */
@@ -13,6 +18,9 @@
 #include <map>
 #include <vector>
 
+// hex color
+#include <sstream>
+
 
 #include <glm/vec2.hpp> // glm::vec3
 #include <glm/vec3.hpp> // glm::vec3
@@ -22,14 +30,6 @@
 #include <glm/ext/matrix_clip_space.hpp> // glm::perspective
 #include <glm/ext/scalar_constants.hpp> // glm::pi
 
-
-
-
-#define SKETCH "program.h"
-//#define SKETCH "novelo.h"
-
-
-
 #define PI 3.141592654
 
 #define WIDTH 800
@@ -38,12 +38,11 @@ int width = WIDTH;
 int height = HEIGHT;
 
 using namespace std;
-//GLubyte checkImage[800][800][4];
 
 int fullscreen=0;
-//virtual void mousedrag (int x, int y) {}
 
-#include "_basic.h"
+//#include "_basic.h"
+#include "_structs.h"
 #include "_util.h"
 
 //#define RTMIDI17_COREAUDIO 1
@@ -76,7 +75,7 @@ void display(void) {
     glEnable(GL_MULTISAMPLE_ARB);
 //	glEnable(GL_MULTISAMPLE);
 //
-	draw();
+	myApp.draw();
 	
 	glutSwapBuffers();
 	glutPostRedisplay();
@@ -104,6 +103,9 @@ void keyDown (unsigned char key, int x, int y)
 	else if (key == '-') {
 		toggle_fullscreen();
 	}
+	else if (key == '=') {
+		// u.
+	}
 	else if (key == 's') {
 //		useShader ^= 1;
 	}
@@ -119,16 +121,57 @@ void keyUp (unsigned char key, int x, int y)
 
 void timer( int value )
 {
-    glutTimerFunc( 16, timer, 0 );
+//    glutTimerFunc( 16, timer, 0 );
+	glutTimerFunc( 80, timer, 0 );
     glutPostRedisplay();
 }
 
 bool setupIsDone = false;
+
+
+void mouseclick(int button,int state,int x,int y) {
+	if (state == GLUT_DOWN) {
+		myApp.mousePressed(glm::vec2(x,y));
+//		cout << "mouseclick" << endl;
+		if (button == GLUT_RIGHT_BUTTON) {
+
+		}
+	}
+}
+
+void mousedrag (int x, int y) {
+	myApp.mouseDragged(glm::vec2(x,y));
+	myApp.mousedrag(x,y);
+}
+
+void mousemove(int x, int y) {
+	myApp.mousemove(x,y);
+}
+
+
+void reshape(int w, int h)
+{
+//	glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+//	glMatrixMode(GL_PROJECTION);
+//	glLoadIdentity();
+//	gluPerspective(60.0, (GLfloat) w/(GLfloat) h, 1.0, 30.0);
+//	glMatrixMode(GL_MODELVIEW);
+//	glLoadIdentity();
+//	glTranslatef(0.0, 0.0, -3.6);
+}
+
+
+void idle(void)
+{
+    glutPostRedisplay();
+}
+
+
 int main(int argc, char** argv)
 {
 	
 	if (!setupIsDone) {
-		setup();
+		myApp.setup();
 		setupIsDone = true;
 	}
 	

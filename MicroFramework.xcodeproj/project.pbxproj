@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		191E602A25BE087800980275 /* __core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 191E5F2125BE087800980275 /* __core.cpp */; };
 		193D353225BB9FEF00D50C9E /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 193D353125BB9FEF00D50C9E /* CoreFoundation.framework */; };
 		193D353425BBA01D00D50C9E /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 193D353325BBA01D00D50C9E /* CoreMIDI.framework */; };
 		193D353625BBA03800D50C9E /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 193D353525BBA03800D50C9E /* CoreAudio.framework */; };
-		1953E79324D9B78800553E96 /* __core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1953E79224D9B78800553E96 /* __core.cpp */; };
 		1982F6F023F473F900FE2CE5 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1982F6EF23F473F900FE2CE5 /* GLUT.framework */; };
 		1982F6F223F473FF00FE2CE5 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1982F6F123F473FF00FE2CE5 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
@@ -28,18 +28,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		191E586425BE015E00980275 /* program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = program.h; path = sketch/program.h; sourceTree = "<group>"; };
-		193D348225BB7E2400D50C9E /* _midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _midi.h; sourceTree = "<group>"; };
+		191E586725BE087500980275 /* _shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _shader.h; sourceTree = "<group>"; };
+		191E586825BE087500980275 /* _basic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _basic.h; sourceTree = "<group>"; };
+		191E586925BE087500980275 /* _util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _util.h; sourceTree = "<group>"; };
+		191E5F2125BE087800980275 /* __core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = __core.cpp; sourceTree = "<group>"; };
+		191E5F2325BE087800980275 /* _midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _midi.h; sourceTree = "<group>"; };
 		193D353125BB9FEF00D50C9E /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		193D353325BBA01D00D50C9E /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		193D353525BBA03800D50C9E /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		1942607A24D9B4C5009C6548 /* _util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _util.h; sourceTree = "<group>"; };
-		1953E79224D9B78800553E96 /* __core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = __core.cpp; sourceTree = "<group>"; };
-		1953E79424D9BF1000553E96 /* _basic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _basic.h; sourceTree = "<group>"; };
+		193DA33625BE15DB00C152BE /* _structs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _structs.h; sourceTree = "<group>"; };
+		193DA33725BE1F0900C152BE /* program.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = program.h; path = MicroFramework/program.h; sourceTree = "<group>"; };
 		1982F6D023F4732200FE2CE5 /* MicroFramework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MicroFramework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1982F6EF23F473F900FE2CE5 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		1982F6F123F473FF00FE2CE5 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		19EC7B3F23F642B2007F1C52 /* _shader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _shader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,11 +59,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		191E586525BE087500980275 /* MicroFramework */ = {
+			isa = PBXGroup;
+			children = (
+				191E5F2125BE087800980275 /* __core.cpp */,
+				191E586825BE087500980275 /* _basic.h */,
+				191E5F2325BE087800980275 /* _midi.h */,
+				191E586725BE087500980275 /* _shader.h */,
+				193DA33625BE15DB00C152BE /* _structs.h */,
+				191E586925BE087500980275 /* _util.h */,
+			);
+			path = MicroFramework;
+			sourceTree = "<group>";
+		};
 		1982F6C723F4732200FE2CE5 = {
 			isa = PBXGroup;
 			children = (
-				191E586425BE015E00980275 /* program.h */,
-				1982F6D223F4732200FE2CE5 /* MicroFramework */,
+				193DA33725BE1F0900C152BE /* program.h */,
+				191E586525BE087500980275 /* MicroFramework */,
 				1982F6D123F4732200FE2CE5 /* Products */,
 				1982F6EE23F473F900FE2CE5 /* Frameworks */,
 			);
@@ -74,18 +88,6 @@
 				1982F6D023F4732200FE2CE5 /* MicroFramework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1982F6D223F4732200FE2CE5 /* MicroFramework */ = {
-			isa = PBXGroup;
-			children = (
-				1953E79224D9B78800553E96 /* __core.cpp */,
-				1953E79424D9BF1000553E96 /* _basic.h */,
-				1942607A24D9B4C5009C6548 /* _util.h */,
-				193D348225BB7E2400D50C9E /* _midi.h */,
-				19EC7B3F23F642B2007F1C52 /* _shader.h */,
-			);
-			path = MicroFramework;
 			sourceTree = "<group>";
 		};
 		1982F6EE23F473F900FE2CE5 /* Frameworks */ = {
@@ -157,7 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1953E79324D9B78800553E96 /* __core.cpp in Sources */,
+				191E602A25BE087800980275 /* __core.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +222,8 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SYMROOT = $SOURCE_ROOT;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -272,6 +276,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				SYMROOT = $SOURCE_ROOT;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -282,12 +288,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_PREPROCESSOR_DEFINITIONS = "RTMIDI17_HEADER_ONLY=1";
-				HEADER_SEARCH_PATHS = (
-					"RtMidi17/include/**",
-					"glm/glm/**",
-					"$SOURCE_ROOT/**",
-				);
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = $SOURCE_ROOT;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -299,12 +303,11 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_PREPROCESSOR_DEFINITIONS = "RTMIDI17_HEADER_ONLY=1";
-				HEADER_SEARCH_PATHS = (
-					"RtMidi17/include/**",
-					"glm/glm/**",
-					"$SOURCE_ROOT/**",
-				);
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/**";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = $SOURCE_ROOT;
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;
