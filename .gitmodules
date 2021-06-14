@@ -7,3 +7,6 @@
 [submodule "libs/RtMidi17"]
 	path = libs/RtMidi17
 	url = https://github.com/jcelerier/RtMidi17
+[submodule "libs/libremidi"]
+	path = libs/libremidi
+	url = git@github.com:jcelerier/libremidi.git
