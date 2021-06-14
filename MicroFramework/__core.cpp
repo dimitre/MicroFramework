@@ -47,9 +47,16 @@ int fullscreen=0;
 #include "_structs.h"
 #include "_util.h"
 
+#define USEMIDI 1
+
+#ifdef USEMIDI
+#define LIBREMIDI_HEADER_ONLY 1
+#define LIBREMIDI_COREAUDIO 1
+#include <libremidi/libremidi.hpp>
+#include "_midi.h"
+#endif
 //#define RTMIDI17_COREAUDIO 1
 //#include <rtmidi17/rtmidi17.hpp>
-//#include "_midi.h"
 
 //#include "_shader.h"
 #include SKETCH

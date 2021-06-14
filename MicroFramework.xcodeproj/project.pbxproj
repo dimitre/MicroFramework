@@ -293,10 +293,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				GCC_PREPROCESSOR_DEFINITIONS = "RTMIDI17_HEADER_ONLY=1";
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/**";
+				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/libs/libremidi/**";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = $SOURCE_ROOT;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "arm64 arm64e x86_64";
 			};
 			name = Debug;
 		};
@@ -309,11 +309,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				GCC_PREPROCESSOR_DEFINITIONS = "RTMIDI17_HEADER_ONLY=1";
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/**";
+				HEADER_SEARCH_PATHS = "$SOURCE_ROOT/libs/libremidi/**";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYMROOT = $SOURCE_ROOT;
-				VALID_ARCHS = x86_64;
+				VALID_ARCHS = "arm64 arm64e x86_64";
 			};
 			name = Release;
 		};

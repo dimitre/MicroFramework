@@ -1,3 +1,6 @@
+#define USEMIDI 1
+
+
 struct app : public microApp {
 public:
 	float easyX, easyY;
@@ -13,14 +16,17 @@ public:
 #endif
 
 	void setup() override {
-	//	setupMidi();
-		cout << "this is setup" << endl;
+        cout << "this is setup" << endl;
 #ifdef USEGLM
 		u.setup();
 #endif
 	//	fbo.allocate(410,330);
 	//	setupShader();
 	//	test.init();
+#ifdef USEMIDI
+        setupMidi();
+        listMidiPorts();
+#endif
 	}
 
 	void mousedrag (int x, int y) override {
@@ -44,7 +50,9 @@ public:
 
 	void desenha() {
 
-	//	sendMidi();
+#ifdef USEMIDI
+		sendMidi();
+#endif
 		background(0.0);
 		clear();
 		camera();

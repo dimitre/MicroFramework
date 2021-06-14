@@ -1,0 +1,13 @@
+
+cflags = -Ilibs/libremidi/include -std=c++17 -framework GLUT -framework OPENGL -framework CoreMIDI -framework CoreAudio -framework CoreFoundation -target arm64-apple-macos11 
+#cflags2 = -Ilibs/libremidi/include -std=c++17 -target arm64-apple-macos11 
+
+rule cc
+  command = clang++ $cflags -c $in -o $out
+
+rule link
+  command = clang++ $cflags -o $out $in
+  description = LINK $out
+
+build src.o: cc MicroFramework/__core.cpp
+build prog: link src.o

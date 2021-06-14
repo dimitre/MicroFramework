@@ -1,10 +1,13 @@
 
+// DOCS
+// https://github.com/jcelerier/libremidi/blob/master/docs/usage.md
 
-rtmidi::midi_out midiout;
+libremidi::midi_out midiout;
 
 void listMidiPorts() {
 	cout << "listMidiPorts" << endl;
 	unsigned int nPorts = midiout.get_port_count();
+    cout << "nPorts : " << nPorts << endl;
 	if (nPorts == 0)
 	{
 		std::cout << "No output ports available!" << std::endl;
@@ -22,6 +25,7 @@ void setupMidi() {
 }
 
 void sendMidi() {
+//    cout << "sendmidi" << endl;
 //	delay(.1);
 	if (rand() > .01) {
 		std::vector<unsigned char> message (3);
